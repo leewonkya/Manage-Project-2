@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @Styles.Render("~/css/All")
+    <script src="~/Scripts/tinymce.min.js"></script>
+    <title>Manage Project | Dev99</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="header">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light justify-content-end align-items-center">
+
+                <div class="collapse navbar-collapse flex-grow-1 flex-lg-grow-0">
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="search-box">
+                            <input class="form-control mr-sm-2 search" type="text" placeholder="Search">
+                            <a class="btn" href="#">
+                                <i class="fas fa-search fa-sm"></i>
+                            </a>
+                        </div>
+                    </form>
+                    <ul class="navbar-nav mt-2 mt-lg-0 align-items-center">
+
+                            
+                        <li class="nav-item dropdown" id="user">
+                            <a class="nav-link dropdown-toggle" href="#" id="profile" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <img src="~/Content/asset/public/Image/profile.png" alt="User avatar" width="30">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right custom-dropdown" aria-labelledby="profile">
+                                <a class="dropdown-item d-flex align-items-center mb-1 px-3" href="#">
+                                    <span class="mr-2"><i class="fas fa-user "></i></span>
+                                    <div class="content">Profile</div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center mb-1 px-3 dropdown-hover" href="#">
+                                    <span class="mr-2"><i class="fas fa-chart-bar "></i></span>
+                                    <div class="content">Tools</div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center mb-1 px-3" href="#">
+                                    <span class="mr-2"><i class="fa fa-cog "></i></span>
+                                    <div class="content">Setting</div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center mb-1 px-3" href="#">
+                                    <span class="mr-2"><i class="fas fa-question-circle "></i></span>
+                                    <div class="content">Help</div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item d-flex align-items-center mb-1 px-3" href="#">
+                                    <span class="mr-2"><i class="fas fa-power-off"></i></span>
+                                    <div class="content">Log out</div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="sidebar shadow-right">
+                <div class="p-3">
+                    <div class="logo d-flex justify-content-center align-items-center">
+                        <a href="#">Quản Lý Đồ Án</a>
+                    </div>
+                    <div class="profile-box d-flex justify-content-start align-items-center pl-3">
+                        <img src="~/Content/asset/public/Image/profile.png" alt="User profile" width="50" class="mr-3">
+                        <div class="profile-box__content d-flex flex-column">
+                            <div class="wc">Hello, <span>Admin</span></div>
+                            <div class="type">Online <span><i class="fas fa-check text-success   "></i></span></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="list-box">
+                        <div class="list-title px-2 mb-2">dashboard</div>
+                        <ul class="d-flex flex-column justify-content-center align-items-center">
+                            <li class="d-flex flex-row list-item mb-2 active">
+                                <a class="list-link px-2">
+                                    <span class="icon mr-2">
+                                        <i class="fas fa-rainbow"></i>
+                                    </span>
+                                    <span class="list-link-content">Dashboard</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="list-box">
+                        <div class="list-title px-2 mb-2">Chức năng</div>
+                        <ul class="d-flex flex-column justify-content-center align-items-center">
+                            <li class="d-flex flex-row list-item mb-2">
+                                <a class="list-link px-2" href="@Url.Action("listGuest", "Guest", new { @id = 3 })">
+                                    <span class="icon mr-2">
+                                        <i class="fas fa-rainbow"></i>
+                                    </span>
+                                    <span class="list-link-content">Quản lí sinh viên</span>
+                                </a>
+                            </li>
+                            <li class="d-flex flex-row list-item mb-2">
+                                <a class="list-link px-2" href="@Url.Action("listGuest", "Guest", new { @id = 2 })">
+                                    <span class="icon mr-2">
+                                        <i class="fas fa-rainbow"></i>
+                                    </span>
+                                    <span class="list-link-content">Quản lí giảng viên</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                Copyright &copy; By <a href="#" class="footer-text">Dev99</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="content-box">
+                    @RenderBody()
+                </div>  
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/js/All")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

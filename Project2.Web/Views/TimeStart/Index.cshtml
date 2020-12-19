@@ -1,0 +1,163 @@
+﻿@model Project2.Core.Models.Entities.Time_start
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="content-box__name mb-3 py-2">Danh Mục Đồ Án</div>
+    </div>
+
+
+    <button type="button" class="btn btn-primary f-roboto m-4" data-toggle="modal" data-target="#createProject">
+        Tạo đồ án
+    </button>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-bordered table-hover" id="tableData">
+            @{ 
+                Html.RenderAction("TimeStartPartialView", "TimeStart");
+            }
+        </table>
+    </div>
+
+
+
+    <div class="modal fade" id="createProject" tabindex="-1" role="dialog"
+         aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            @using (Html.BeginForm("Add", "TimeStart", FormMethod.Post))
+            {
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Đợt đồ án</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label>Tên đợt đồ án</label>
+                                    @Html.EditorFor(x => x.name, new { htmlAttributes = new { @class = "form-control", type = "text", required = "required" } })
+                                    @Html.ValidationMessageFor(x => x.name, "", new { @class = "text-danger" })
+                                    <small class="text-muted">Tên của đồ án</small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>Ngày bắt đầu</label>                                    
+                                    @Html.EditorFor(x => x.start_at, new { htmlAttributes = new { @class = "form-control", type = "date", required = "required" } })
+                                    @Html.ValidationMessageFor(x => x.start_at, "", new { @class = "text-danger" })
+                                    <small id="helpId" class="text-muted">
+                                        Thời gian bắt đầu đồ án
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>Ngày kết thúc</label>
+                                    @Html.EditorFor(x => x.end_at, new { htmlAttributes = new { @class = "form-control", type = "date", required = "required" } })
+                                    @Html.ValidationMessageFor(x => x.end_at, "", new { @class = "text-danger" })
+                                    <small id="helpId" class="text-muted">
+                                        Thời gian kết thúc đồ
+                                        án
+                                    </small>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>Giới hạn số lượng đề tài</label>
+                                    @Html.EditorFor(x => x.numberProject, new { htmlAttributes = new { @class = "form-control", type = "number", required = "required", min = "1", max = "80" } })
+                                    @Html.ValidationMessageFor(x => x.name, "", new { @class = "text-danger" })
+                                    <small class="text-muted">Số lượng đề tài tối đa</small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>Giới hạn số lượng đề tài mỗi giảng viên</label>
+                                    @Html.EditorFor(x => x.numberProjectInTeacher, new { htmlAttributes = new { @class = "form-control", type = "number", required = "required", min = "1", max = "8" } })
+                                    @Html.ValidationMessageFor(x => x.name, "", new { @class = "text-danger" })
+                                    <small class="text-muted">
+                                        Số lượng đề tài tối đa mỗi giảng
+                                        viên
+                                    </small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                        <input type="submit" class="btn btn-primary" data-toggle="modal"
+                               data-target="#Table" value="Xác nhận" onclick="addTime()"/>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function addTime() {
+            var url = "@Url.Action("Add", "TimeStart")";
+            var data = $(form).serialize();
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: "html",
+                data: data,
+                succes: function (response) {
+                    $("#tableData").html(response);
+                    swal("Success!", "Click button to close this Alert", "success");
+                }
+            })
+        }
+
+        function remove(id) {
+            var url = "@Url.Action("Remove", "TimeStart")" + "?id=" + id;
+            $.ajax({
+                url: url,
+                data: id,
+                contentType: "html",
+                type: "POST",
+                success: function (response) {
+                    $("#tableData").html(response);
+                    swal("Remove Success!", "Click button to close this Alert", "success");
+                },
+                error: function (xhr, status) {
+                    alert(status);
+                }
+            })
+        }
+
+        function block(id) {
+            var url = "@Url.Action("Block", "TimeStart")" + "?id=" + id;
+            
+            $.ajax({
+                url: url,
+                data: id,
+                contentType: "html",
+                type: "POST",
+                success: function (response) {
+                    $("#tableData").html(response);
+                    swal("Block Success!", "Click button to close this Alert", "success");
+                },
+                error: function (xhr, status) {
+                    alert(status);
+                }
+            })
+        }
+    </script>
+}

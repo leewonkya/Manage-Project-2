@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="heading d-flex flex-row justify-content-between p-3 align-content-around">
+            <div class="heading-title h4">Quản lý Sinh viên</div>
+            <ul class="navbar">
+                <li class="nav-item">
+                    <form action="">
+                        <input type="text" class="form-control mr-2" placeholder="search">
+                    </form>
+                </li>
+                <li class="nav-item dropdown" id="notification">
+                    <a class="nav-link btn-hover" href="#" id="dropdownId"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-header h5 ">Import</div>
+                        <button class="dropdown-item text-success"><i class="far fa-file-excel fa-lg mr-2"></i>Excel</button>
+                        <div class="dropdown-header h5 ">Export</div>
+                        <button class="dropdown-item text-success"><i class="far fa-file-excel fa-lg mr-2"></i>Excel</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table id="tableGuest" class="table table-responsive d-table">
+            @{
+                Html.RenderAction("guestPartialView", "Guest");
+
+            }
+        </table>
+
+    </div>
+
+</div>
