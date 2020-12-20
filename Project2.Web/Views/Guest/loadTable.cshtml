@@ -1,0 +1,80 @@
+﻿@model List<Project2.Core.Models.Entities.Guest>
+@{
+    
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="heading d-flex flex-row justify-content-between p-3 align-content-around">
+            <div class="heading-title h4">Manage @ViewBag.title</div>
+            <ul class="navbar">
+                <li class="nav-item">
+                    <form action="">
+                        <input type="text" class="form-control mr-2" placeholder="search">
+                    </form>
+                </li>
+                <li class="nav-item dropdown" id="notification">
+                    <a class="nav-link btn-hover" href="#" id="dropdownId"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-header h5 ">Import</div>
+                        <button class="dropdown-item text-success"><i class="far fa-file-excel fa-lg mr-2"></i>Excel</button>
+                        <div class="dropdown-header h5 ">Export</div>
+                        <button class="dropdown-item text-success"><i class="far fa-file-excel fa-lg mr-2"></i>Excel</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table id="tableGuest" class="table table-responsive d-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tài khoản</th>
+                    <th>Mật khẩu</th>
+                    <th>Họ và tên</th>
+                    <th>Ảnh</th>
+                    <th>Ngày sinh</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int index = 0;
+                }
+                @if(Model.Count == 0){ 
+                    <tr>
+                        <td colspan="7" align="center" style="color:red">Dữ liệu trống</td>
+                    </tr>
+                }
+                @foreach (var item in Model)
+                {
+                    index++;
+                    <tr>
+                        <td>@index</td>
+                        <td>@item.Username</td>
+                        <td>@item.Password</td>
+                        <td>@item.Full_name</td>
+                        <td>@item.Path</td>
+                        <td>@item.Birthday</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Guest", new { id = item.Id })" class="btn btn-info btn-sm"><i class="fas fa-pen"></i></a>
+                            <a href="@Url.Action("Remove", "Guest", new { id = item.Id })" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

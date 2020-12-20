@@ -10,8 +10,6 @@ namespace Project2.Core.Models.Entities
     {
         public int id { get; set; }
         public string name { get; set; }
-        public DateTime create_at { get; set; }
-        public DateTime update_at { get; set; }
         public bool isActive { get; set; }
         public string require { get; set; }
         

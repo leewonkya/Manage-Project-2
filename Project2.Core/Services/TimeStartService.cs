@@ -22,5 +22,10 @@ namespace Project2.Core.Services
         {
             return context.Time_Starts.OrderByDescending(x => x.isFinish == false).ToList();
         }
+
+        public Time_start getTime()
+        {
+            return context.Time_Starts.Where(x => x.end_at > DateTime.Now && x.isFinish == false).SingleOrDefault();
+        }
     }
 }

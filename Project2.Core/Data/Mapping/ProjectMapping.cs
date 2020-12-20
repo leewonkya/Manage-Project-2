@@ -14,11 +14,9 @@ namespace Project2.Core.Data.Mapping
         {
             HasKey(x => x.id);
             Property(x => x.id).IsRequired();
-            Property(x => x.name).IsRequired();
-            Property(x => x.create_at).IsRequired();
-            Property(x => x.update_at).IsOptional();
+            Property(x => x.name).IsOptional();
             Property(x => x.isActive).IsOptional();
-            Property(x => x.require).IsRequired();
+            Property(x => x.require).IsOptional();
 
             HasMany(x => x.Tags)
                 .WithMany(x => x.Projects)

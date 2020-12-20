@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Project2.Core.Models.Entities;
+using Project2.Web.Common;
 
 namespace Project2.Web.Controllers
 {
@@ -13,13 +14,14 @@ namespace Project2.Web.Controllers
     {
         // GET: TimeStart
         private readonly ITimeStartService timeStartService;
-
+        private readonly IGuestService guestService;
         private IDataContext dataContext;
 
-        public TimeStartController(ITimeStartService timeStartService, IDataContext dataContext)
+        public TimeStartController(ITimeStartService timeStartService, IDataContext dataContext, IGuestService guestService)
         {
             this.timeStartService = timeStartService;
             this.dataContext = dataContext;
+            this.guestService = guestService;
         }
         public ActionResult Index()
         {            
@@ -80,6 +82,14 @@ namespace Project2.Web.Controllers
             }
             catch (Exception) { }
             return RedirectToAction("TimeStartPartialView", "TimeStart");
+        }
+
+        
+        public PartialViewResult renderHeader()
+        {
+            var user = (UserLogin)Session["userId"];
+            var model = guestService.GetGuestById(user.id);
+            return PartialView("_Header", model);
         }
     }
 }

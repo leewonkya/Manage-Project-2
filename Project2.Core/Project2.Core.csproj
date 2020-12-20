@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -147,6 +148,14 @@
     <Compile Include="Migrations\202012190214265_initialize2.designer.cs">
       <DependentUpon>202012190214265_initialize2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012200945453_initialize3.cs" />
+    <Compile Include="Migrations\202012200945453_initialize3.designer.cs">
+      <DependentUpon>202012200945453_initialize3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012200955489_initialize4.cs" />
+    <Compile Include="Migrations\202012200955489_initialize4.designer.cs">
+      <DependentUpon>202012200955489_initialize4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Project2Configuration.cs" />
     <Compile Include="Data\Context\DataContext.cs" />
@@ -197,6 +206,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012190214265_initialize2.resx">
       <DependentUpon>202012190214265_initialize2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012200945453_initialize3.resx">
+      <DependentUpon>202012200945453_initialize3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012200955489_initialize4.resx">
+      <DependentUpon>202012200955489_initialize4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

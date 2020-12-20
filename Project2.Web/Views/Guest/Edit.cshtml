@@ -1,7 +1,7 @@
 ﻿@model Project2.Core.Models.Entities.Guest
 
 @{
-    ViewBag.Title = "Edit";
+    
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -44,7 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Path, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="Path" class="mb-2"/>
+                <input type="file" name="file" class="mb-2"/>
                 @Html.EditorFor(model => model.Path, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Path, "", new { @class = "text-danger" })
             </div>

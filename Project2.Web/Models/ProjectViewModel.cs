@@ -15,7 +15,8 @@ namespace Project2.Web.Models
         public bool isActive { get; set; }
         public string require { get; set; }
 
-        public List<Tag> Tags { get; set; }
+        public List<int> Tags { get; set; }
+        public string tagName { get; set; }
         public string studentId { get; set; }
         public string studentName { get; set; }
         public string timeStartId { get; set; }

@@ -57,3 +57,5 @@ C:\Users\leewo\source\repos\Project2\Project2.Core\bin\Debug\Microsoft.Owin.Secu
 C:\Users\leewo\source\repos\Project2\Project2.Core\bin\Debug\Microsoft.Owin.Security.xml
 C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize1.resources
 C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize2.resources
+C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize3.resources
+C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize4.resources

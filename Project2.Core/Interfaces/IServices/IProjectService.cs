@@ -10,6 +10,6 @@ namespace Project2.Core.Interfaces.IServices
     {
         IEnumerable<Project> GetProjects();
 
-
+        Project getProjectById(int id);
     }
 }

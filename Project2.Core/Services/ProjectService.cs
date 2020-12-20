@@ -23,5 +23,10 @@ namespace Project2.Core.Services
         {
             return context.Projects.Include(x => x.Tags).ToList();
         }
+
+        public Project getProjectById(int id)
+        {
+            return context.Projects.Find(id);
+        }
     }
 }

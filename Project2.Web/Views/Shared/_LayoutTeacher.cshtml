@@ -15,7 +15,7 @@
 
 <body>
     <div id="wrapper">
-        <div class="header">
+        @*<div class="header">
             <nav class="navbar navbar-expand-sm navbar-light bg-light justify-content-end align-items-center">
 
                 <div class="collapse navbar-collapse flex-grow-1 flex-lg-grow-0">
@@ -29,108 +29,7 @@
                     </form>
 
                     <ul class="navbar-nav mt-2 mt-lg-0 align-items-center">
-                        <li class="nav-item dropdown" id="notification">
-                            <a class="nav-link dropdown-toggle notification-box" href="#" id="dropdownId"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-comment-alt"></i>
-                                <span class="badge badge-danger badge-custom">1</span>
-                            </a>
 
-                            <div class="dropdown-menu dropdown-menu-right custom-dropdown" aria-labelledby="dropdownId">
-                                <div class="d-flex align-items-center justify-content-between px-4 mb-3 mt-2 border-bottom pb-2 main-notification">
-                                    <div class="title">Thông Báo</div>
-                                    <div class="dropdown dropdown-submenu" id="options">
-                                        <a class="btn btn-custom btn-submenu" id="messageId" data-toggle="dropdown"
-                                           aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right custom-dropdown custom-shadow"
-                                             id="messageId">
-                                            <div class="dropdown-item d-flex align-items-center">
-                                                <i class="fas fa-check mr-3"></i>
-                                                <div class="content">Đánh dấu tất cả là đã đọc</div>
-                                            </div>
-                                            <div class="dropdown-item d-flex align-items-center">
-                                                <i class="fas fa-check mr-3"></i>
-                                                <div class="content">Đánh dấu tất cả là đã đọc</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box w-100 h-100 overflow-auto" style="max-height: 300px;">
-                                    <a class="dropdown-item d-flex align-items-center mb-1 px-2" href="#">
-                                        <img src="~/Content/asset/public/Image/profile.png" alt="Avt-user" width="40"
-                                             class="mr-3">
-                                        <div class="d-flex flex-column justify-content-start message">
-                                            <div class="message-content">
-                                                <strong class="user-name">Maria</strong> vừa
-                                                cập
-                                                nhật báo cáo mới vừa cập nhật báo cáo mới
-                                            </div>
-                                            <small>16 phút trước</small>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center mb-1 px-2" href="#">
-                                        <img src="~/Content/asset/public/Image/profile.png" alt="Avt-user" width="40"
-                                             class="mr-3">
-                                        <div class="d-flex flex-column justify-content-start message">
-                                            <div class="message-content">
-                                                <strong class="user-name">Maria</strong> vừa
-                                                cập
-                                                nhật báo cáo mới vừa cập nhật báo cáo mới
-                                            </div>
-                                            <small>16 phút trước</small>
-                                        </div>
-                                        <div class="badge badge-primary ml-2 px-2"
-                                             style="width: 15px; height: 15px; border-radius: 50%;"></div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center mb-1 px-2" href="#">
-                                        <img src="~/Content/asset/public/Image/profile.png" alt="Avt-user" width="40"
-                                             class="mr-3">
-                                        <div class="d-flex flex-column justify-content-start message">
-                                            <div class="message-content">
-                                                <strong class="user-name">Maria</strong> vừa
-                                                cập
-                                                nhật báo cáo mới vừa cập nhật báo cáo mới
-                                            </div>
-                                            <small>16 phút trước</small>
-                                        </div>
-                                        <div class="badge badge-primary ml-2 px-2"
-                                             style="width: 15px; height: 15px; border-radius: 50%;"></div>
-                                    </a>
-
-                                    <a class="dropdown-item d-flex align-items-center mb-1 px-2" href="#">
-                                        <img src="~/Content/asset/public/Image/profile.png" alt="Avt-user" width="40"
-                                             class="mr-3">
-                                        <div class="d-flex flex-column justify-content-start message">
-                                            <div class="message-content">
-                                                <strong class="user-name">Maria</strong> vừa
-                                                cập
-                                                nhật báo cáo mới vừa cập nhật báo cáo mới
-                                            </div>
-                                            <small>16 phút trước</small>
-                                        </div>
-                                        <div class="badge badge-primary ml-2 px-2"
-                                             style="width: 15px; height: 15px; border-radius: 50%;"></div>
-                                    </a>
-
-                                    <a class="dropdown-item d-flex align-items-center mb-1 px-2" href="#">
-                                        <img src="~/Content/asset/public/Image/profile.png" alt="Avt-user" width="40"
-                                             class="mr-3">
-                                        <div class="d-flex flex-column justify-content-start message">
-                                            <div class="message-content">
-                                                <strong class="user-name">Maria</strong> vừa
-                                                cập
-                                                nhật báo cáo mới vừa cập nhật báo cáo mới
-                                            </div>
-                                            <small>16 phút trước</small>
-                                        </div>
-                                        <div class="badge badge-primary ml-2 px-2"
-                                             style="width: 15px; height: 15px; border-radius: 50%;"></div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
                         <li class="nav-item dropdown" id="user">
                             <a class="nav-link dropdown-toggle" href="#" id="profile" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
@@ -163,7 +62,8 @@
                     </ul>
                 </div>
             </nav>
-        </div>
+        </div>*@
+        @Html.Action("renderHeader", "TimeStart")
         <div class="content">
             <div class="sidebar shadow-right">
                 <div class="p-3">

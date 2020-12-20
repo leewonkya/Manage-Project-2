@@ -14,18 +14,84 @@ namespace Project2.Web.Controllers
     {
         // GET: Guest
         private readonly IGuestService guestService;
-
+        private readonly IPermissionService permissionService;
         private IDataContext dataContext;
 
-        public GuestController(IDataContext dataContext, IGuestService guestService)
+        public GuestController(IDataContext dataContext, IGuestService guestService, IPermissionService permissionService)
         {
             this.dataContext = dataContext;
             this.guestService = guestService;
+            this.permissionService = permissionService;
         }
 
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult editProfile(int id)
+        {
+            var model = guestService.GetGuestById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult editProfile(Guest model, HttpPostedFileBase file)
+        {
+            string controller = "";
+            string view = "";
+            try
+            {
+                var data = guestService.GetGuestById(model.Id);
+                int perId = data.Permission.Id;
+                
+                if(perId == 1)
+                {
+                    controller = "TimeStart";
+                    view = "Index";
+                }
+                else if(perId == 2){
+                    controller = "Project";
+                    view = "Index";
+                }
+                else
+                {
+                    controller = "Student";
+                    view = "Index";
+                }
+                if (ModelState.IsValid)
+                {
+                    if (model.Id > 0)
+                    {
+                        if (file != null)
+                        {
+                            try
+                            {
+                                string path = Path.Combine(Server.MapPath("~/Content/asset/public/Image/"),
+                                       Path.GetFileName(file.FileName));
+                                file.SaveAs(path);
+                                data.Path = file.FileName;
+                            }
+                            catch (Exception) { }
+                        }
+                        else
+                        {
+                            data.Path = model.Path;
+                        }
+                        
+                        data.Username = model.Username;
+                        data.Password = model.Password;
+                        data.Full_name = model.Full_name;
+                        data.Birthday = model.Birthday;
+                        data.Email = model.Email;
+                        dataContext.SaveChanges();
+                        return RedirectToAction(view, controller, new { id = data.Permission.Id });
+                    }
+                }
+            }
+            catch (Exception) { }
+            return RedirectToAction(view, controller);
         }
 
         [HttpGet]
@@ -38,35 +104,43 @@ namespace Project2.Web.Controllers
         [HttpPost]
         public ActionResult Edit(Guest model, HttpPostedFileBase file)
         {
+            var data = guestService.GetGuestById(model.Id);
             try
             {
                 if (ModelState.IsValid)
                 {
                     if(model.Id > 0)
                     {
-                        if(file != null && file.ContentLength > 0)
+                        if(file != null)
                         {
                             try
                             {
-                                string path = Path.Combine(Server.MapPath("~/Content/asset/public/Image"),
+                                
+                                string path = Path.Combine(Server.MapPath("~/Content/asset/public/Image/"),
                                        Path.GetFileName(file.FileName));
                                 file.SaveAs(path);
+                                data.Path = file.FileName;
                             }
                             catch (Exception) { }
                         }
-                        var data = guestService.GetGuestById(model.Id);
+                        else
+                        {
+                            data.Path = model.Path;
+                        }
+                        
                         data.Username = model.Username;
                         data.Password = model.Password;
                         data.Full_name = model.Full_name;
                         data.Birthday = model.Birthday;
-                        data.Path = model.Path;
+                        
                         data.Email = model.Email;                        
                         dataContext.SaveChanges();
+                        return RedirectToAction("loadTable", "Guest", new { id = data.Permission.Id });
                     }
                 }
             }
             catch (Exception) { }
-            return RedirectToAction("Index", "Guest");
+            return RedirectToAction("Index", "TimeStart");
         }
 
         public ActionResult Remove(int id)
@@ -78,17 +152,19 @@ namespace Project2.Web.Controllers
                 {
                     dataContext.Guests.Remove(data);
                     dataContext.SaveChanges();
+                    return RedirectToAction("loadTable", "Guest", new { id = data.Permission.Id });
                 }
             }
-            return RedirectToAction("Index", "Guest");
+            return RedirectToAction("Index", "TimeStart");
         }
 
-        public ActionResult guestPartialView()
+
+        public ActionResult loadTable(int id)
         {
-            var model = guestService.getListGuests().ToList();
-
-            return PartialView("guestPartialView", model);
+            var model = guestService.getListGuestByIdPermission(id).ToList();
+            string title = permissionService.getPermissionNameById(id);
+            ViewBag.title = title;
+            return View(model);
         }
-
     }
 }

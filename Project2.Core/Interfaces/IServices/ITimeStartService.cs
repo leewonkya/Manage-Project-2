@@ -9,5 +9,7 @@ namespace Project2.Core.Interfaces.IServices
     public interface ITimeStartService
     {
         List<Time_start> getTimeStart();
+
+        Time_start getTime();
     }
 }

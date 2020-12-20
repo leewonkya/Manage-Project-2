@@ -24,9 +24,14 @@ namespace Project2.Core.Services
             return context.Guests.Take(1).SingleOrDefault();
         }
 
+        public Guest GetGuestByIdPermission(int id)
+        {
+            return context.Guests.Include(x => x.Permission).Where(x => x.Permission.Id == id).SingleOrDefault();
+        }
+
         public Guest GetGuestById(int id)
         {
-            return context.Guests.Find(id);
+            return context.Guests.Include(x => x.Permission).Where(x => x.Id == id).SingleOrDefault();
         }
 
         public IEnumerable<Guest> getListGuests()
@@ -37,6 +42,11 @@ namespace Project2.Core.Services
         public int getPermissionIdByUsernameAndPassword(string username, string password)
         {
             return context.Guests.Where(x => x.Username.Equals(username) && x.Password.Equals(password)).Select(x => x.Permission.Id).SingleOrDefault();
+        }
+
+        public int getGuestIdByUsernameAndPassword(string username, string password)
+        {
+            return context.Guests.Where(x => x.Username.Equals(username) && x.Password.Equals(password)).Select(x => x.Id).SingleOrDefault();
         }
 
         public List<Guest> getListGuestByIdPermission(int id)

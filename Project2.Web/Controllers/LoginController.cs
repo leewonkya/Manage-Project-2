@@ -1,6 +1,7 @@
 ﻿using Project2.Core.Interfaces;
 using Project2.Core.Interfaces.IServices;
 using Project2.Core.Models.Entities;
+using Project2.Web.Common;
 using Project2.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -35,18 +36,22 @@ namespace Project2.Web.Controllers
             var password = model.Password;
 
             var id = guestService.getPermissionIdByUsernameAndPassword(username, password);
-            //int id = guestService.getPermissionIdById(data.Id);
+            var idGuest = guestService.getGuestIdByUsernameAndPassword(username, password);
+            //int id = guestService.getPermissionIdById(data.Id);'
+            var userSession = new UserLogin();
+            userSession.id = idGuest;
+            Session.Add("userId", userSession);
             if(id == 1)
             {
-                return RedirectToAction("Index", "TimeStart", id);
+                return RedirectToAction("Index", "TimeStart");
             }
             else if(id == 2)
             {
-                return RedirectToAction("Index", "Project", id);
+                return RedirectToAction("Index", "Project");
             }
             else if(id == 3)
             {
-                return RedirectToAction("Index", "Guest", id);
+                return RedirectToAction("Index", "Guest");
             }
             return View();
         }
