@@ -37,9 +37,9 @@ namespace Project2.Web.Controllers
             return View();
         }
 
-        public ActionResult projectPartialView()
+        public ActionResult projectPartialView(string key)
         {
-            var model = projectService.GetProjects();
+            var model = projectService.getListProject(key);
             return PartialView("projectPartialView", model);
         }
 
@@ -87,6 +87,15 @@ namespace Project2.Web.Controllers
                 }
             }
             return RedirectToAction("Index", "Project");
+        }
+
+        
+        public ActionResult removeProject(int id)
+        {
+            var data = dataContext.Projects.Find(id);
+            dataContext.Projects.Remove(data);
+            dataContext.SaveChanges();
+            return RedirectToAction("projectPartialView", "Project");
         }
     }
 }

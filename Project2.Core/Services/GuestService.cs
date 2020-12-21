@@ -54,6 +54,5 @@ namespace Project2.Core.Services
             return context.Guests.Include(x => x.Permission).Where(x => x.Permission.Id == id).ToList();
         }
 
-        
     }
 }

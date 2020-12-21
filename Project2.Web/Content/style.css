@@ -45,6 +45,13 @@ label {
   text-transform: uppercase;
 }
 
+.text-2 {
+    font-size: 1rem !important;
+    font-weight: 600;
+    color: #000;
+    text-transform: uppercase;
+}
+
 .select2{
     width: 100% !important;
 }

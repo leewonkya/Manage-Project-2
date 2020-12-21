@@ -28,5 +28,23 @@ namespace Project2.Core.Services
         {
             return context.Projects.Find(id);
         }
+
+        public List<Project> getListProject(string name)
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                return context.Projects.Include(x => x.Tags).Include(x => x.GuestTeacher).Include(x => x.GuestStudent).Where(x => x.GuestTeacher.Full_name.Contains(name)).ToList();
+            }
+            return context.Projects.Include(x => x.Tags).Include(x => x.GuestTeacher).Include(x => x.GuestStudent).ToList();
+        }
+
+        public Project getProjectByStudentId(int id)
+        {
+            return context.Projects
+                .Include(x => x.Tags)
+                .Include(x => x.GuestTeacher)
+                .Include(x => x.GuestStudent)
+                .Where(x => x.GuestStudent.Id == id).SingleOrDefault();
+        }
     }
 }

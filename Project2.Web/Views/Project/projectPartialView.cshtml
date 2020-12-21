@@ -1,4 +1,4 @@
-﻿@model List<Project2.Web.Models.ProjectViewModel>
+﻿@model List<Project2.Core.Models.Entities.Project>
 
 <thead>
     <tr>
@@ -22,17 +22,30 @@
     }
     @foreach (var item in Model)
     {
+        index++;
         <tr>
             <td>@index</td>
             <td>@item.name</td>
-            <td>@item.Tags</td>
             <td>
-                @item.require
+                @foreach (var i in item.Tags)
+                {
+                    <span>@i.name.ToString(), </span>
+                }
             </td>
-            <td>@item.studentName</td>
+            <td>
+                @Html.Raw(item.require)
+            </td>
+            
+            <td>
+                @if (item.GuestStudent == null)
+                {
+                    <p></p>
+                }
+                else {
+                    item.GuestStudent.Full_name.ToString();
+                }</td>
             <td>
                 <a href="#" class="btn btn-danger btn-sm" onclick="removeProject(@item.id)"><i class="fas fa-trash-alt"></i></a>
-                <a href="#" class="btn btn-info btn-sm" data-target="#modifyProject" data-toggle="modal"><i class="fas fa-pen"></i></a>
                 <a href="#" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
             </td>
         </tr>

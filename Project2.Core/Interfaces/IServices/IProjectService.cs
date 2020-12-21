@@ -11,5 +11,9 @@ namespace Project2.Core.Interfaces.IServices
         IEnumerable<Project> GetProjects();
 
         Project getProjectById(int id);
+
+        Project getProjectByStudentId(int id);
+
+        List<Project> getListProject(string name);
     }
 }

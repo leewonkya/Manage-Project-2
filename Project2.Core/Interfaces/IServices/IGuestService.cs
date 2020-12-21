@@ -14,7 +14,7 @@ namespace Project2.Core.Interfaces.IServices
         Guest GetGuestById(int id);
 
         Guest GetGuestByIdPermission(int id);
-
+        
         int getGuestIdByUsernameAndPassword(string username, string password);
 
         int getPermissionIdByUsernameAndPassword(string username, string password);

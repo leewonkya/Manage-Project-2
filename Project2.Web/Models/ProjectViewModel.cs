@@ -14,7 +14,7 @@ namespace Project2.Web.Models
         public DateTime update_at { get; set; }
         public bool isActive { get; set; }
         public string require { get; set; }
-
+        public Tag Tag { get; set; }
         public List<int> Tags { get; set; }
         public string tagName { get; set; }
         public string studentId { get; set; }

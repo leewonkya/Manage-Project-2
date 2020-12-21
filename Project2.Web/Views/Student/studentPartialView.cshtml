@@ -1,0 +1,66 @@
+﻿@model List<Project2.Core.Models.Entities.Project>
+<thead>
+    <tr align="left">
+        <th></th>
+        <th style="text-align: center;">#</th>
+        <th>Tên đồ án</th>
+        <th>GV hướng dẫn</th>
+        <th>Ngôn ngữ sử dụng</th>
+        <th>Yêu cầu</th>
+        <th>Sinh viên đăng ký</th>
+    </tr>
+</thead>
+<tbody>
+    @{
+        int index = 0;
+    }
+    @if (Model.Count == 0)
+    {
+        <tr>
+            <td style="color: red" colspan="7" align="center">Dữ liệu trống...</td>
+        </tr>
+    }
+    @foreach (var item in Model)
+    {
+        index++;
+        <tr align="left">
+            <td align="center">
+                @if (item.GuestStudent == null)
+                {
+                    <button class="btn btn-primary" onclick="addStudent(@item.id)">Đăng ký</button>
+                }
+                else
+                {
+                    <button class="btn btn-primary btn-unable" onclick="addStudent(@item.id)" disabled>Đăng ký</button>
+                }
+            </td>
+            <td align="center">@index</td>            
+            <td>@item.name</td>
+            <td>
+                <span>@item.GuestTeacher.Full_name.ToString()</span>
+            </td>
+            <td>
+                @foreach (var i in item.Tags)
+                {
+                    <span>@i.name.ToString() </span>
+                }
+            </td>
+            <td>
+                @Html.Raw(item.require)
+            </td>
+
+            <td>
+                @if (item.GuestStudent == null)
+                {
+                    <p></p>
+                }
+                else
+                {
+                    <span>@item.GuestStudent.Full_name.ToString()</span> 
+                }
+            </td>
+            
+        </tr>
+    }
+
+</tbody>

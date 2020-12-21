@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Models\GuestViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -331,13 +332,13 @@
     <Content Include="Views\Guest\loadTable.cshtml" />
     <Content Include="Views\TimeStart\_Header.cshtml" />
     <Content Include="Views\Guest\editProfile.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\studentPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\asset\css\" />
     <Folder Include="Content\asset\public\Uploads\" />
-    <Folder Include="Views\Permission\" />
     <Folder Include="Views\Report\" />
-    <Folder Include="Views\Student\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>

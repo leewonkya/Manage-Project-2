@@ -51,7 +51,7 @@ namespace Project2.Web.Controllers
             }
             else if(id == 3)
             {
-                return RedirectToAction("Index", "Guest");
+                return RedirectToAction("Index", "Student");
             }
             return View();
         }
