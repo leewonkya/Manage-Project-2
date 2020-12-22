@@ -7,7 +7,7 @@
 
 <h2>Quản lý thông tin</h2>
 
-@using (Html.BeginForm("editProfile", "Guest", FormMethod.Post, new { encrype = "multipalrt/from-data" }))
+@using (Html.BeginForm("editProfile", "Guest", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     

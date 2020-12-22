@@ -46,5 +46,41 @@ namespace Project2.Core.Services
                 .Include(x => x.GuestStudent)
                 .Where(x => x.GuestStudent.Id == id).SingleOrDefault();
         }
+
+        public List<Project> getListProjectById(int id, string name)
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                return context.Projects.Include(x => x.Tags).Include(x => x.GuestTeacher).Include(x => x.GuestStudent).Where(x => x.GuestTeacher.Full_name.Contains(name)).ToList();
+            }
+            return context.Projects.Include(x => x.Tags).Include(x => x.GuestTeacher).Include(x => x.GuestStudent).Where(x => x.GuestTeacher.Id == id).ToList();
+            
+        }
+
+        public int getCountProjectByIdTeach(int id)
+        {
+            return context.Projects
+                .Include(x => x.Tags)
+                .Include(x => x.GuestTeacher)
+                .Include(x => x.GuestStudent)
+                .Where(x => x.GuestTeacher.Id == id).Count();
+        }
+
+        public bool getNameProject(string name)
+        {
+            bool check = false;
+
+            var data = context.Projects.Where(x => x.name.Equals(name)).SingleOrDefault();
+
+            if(data == null) // Khong tim thay project
+            {
+                check = true;
+            }
+            else // tim thay project
+            {
+                check = false;
+            }
+            return check;
+        }
     }
 }

@@ -39,7 +39,8 @@ namespace Project2.Web.Controllers
 
         public ActionResult projectPartialView(string key)
         {
-            var model = projectService.getListProject(key);
+            var userLogin = (UserLogin)Session["userId"];
+            var model = projectService.getListProjectById(userLogin.id, key);
             return PartialView("projectPartialView", model);
         }
 
@@ -50,36 +51,49 @@ namespace Project2.Web.Controllers
             var time = timeStartService.getTime();
             var obj = (UserLogin)Session["userId"];
             var teacher = guestService.GetGuestById(obj.id);
+            var cProjectTeach = projectService.getCountProjectByIdTeach(obj.id);
+            bool check = projectService.getNameProject(model.name);
             if (ModelState.IsValid)
             {
                 try
                 {
                     if (model.id == 0)
                     {
-                        var data = new Project();
-                        data.name = model.name;
-                        data.require = model.require;
-                        data.time_Start = time;
-                        data.GuestTeacher = teacher;
-                        dataContext.Projects.Add(data);
-                        dataContext.SaveChanges();
-
-
-                        var projectId = data.id;
-                        var newProject = projectService.getProjectById(projectId);
-                        data.Tags = new List<Tag>();
-                        foreach (var items in model.Tags)
+                        if(cProjectTeach > 8)
                         {
-                            var tag = dataContext.Tags.Include(x => x.Projects).Where(x => x.id.Equals(items)).SingleOrDefault();
-
-                            var i = tag.Projects;
-                            if(tag != null)
-                            {
-                                data.Tags.Add(tag);
-                            }
+                            ViewBag.message = "Thêm lỗi, số lượng đề tài tối đa là 8";
+                            return RedirectToAction("projectPartialView", "Project");
                         }
-                        dataContext.SaveChanges();
-                        return RedirectToAction("Index", "Project");
+                        if(check == false)
+                        {
+                            return RedirectToAction("projectPartialView", "Project");
+                        }
+                        else
+                        {
+                            var data = new Project();
+                            data.name = model.name;
+                            data.require = model.require;
+                            data.time_Start = time;
+                            data.GuestTeacher = teacher;
+                            dataContext.Projects.Add(data);
+                            dataContext.SaveChanges();
+
+                            var projectId = data.id;
+                            var newProject = projectService.getProjectById(projectId);
+                            data.Tags = new List<Tag>();
+                            foreach (var items in model.Tags)
+                            {
+                                var tag = dataContext.Tags.Include(x => x.Projects).Where(x => x.id.Equals(items)).SingleOrDefault();
+
+                                var i = tag.Projects;
+                                if (tag != null)
+                                {
+                                    data.Tags.Add(tag);
+                                }
+                            }
+                            dataContext.SaveChanges();
+                            return RedirectToAction("projectPartialView", "Project");
+                        }                        
                     }
                 }
                 catch (Exception e) {

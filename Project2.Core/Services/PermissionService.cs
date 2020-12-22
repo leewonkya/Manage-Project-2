@@ -21,5 +21,10 @@ namespace Project2.Core.Services
         public string getPermissionNameById(int id) {         
             return context.Permissions.Where(x => x.Id == id).Select(x => x.Title).SingleOrDefault();
         }
+
+        public Permission getPerById(int id)
+        {
+            return context.Permissions.Find(id);
+        }
     }
 }

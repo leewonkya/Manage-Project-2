@@ -22,5 +22,7 @@ namespace Project2.Core.Interfaces.IServices
         IEnumerable<Guest> getListGuests();
 
         List<Guest> getListGuestByIdPermission(int id);
+
+        List<Guest> getlistByNameAndId(int id, string name);
     }
 }

@@ -110,3 +110,5 @@ C:\Users\leewo\source\repos\Project2\Project2.Web\bin\Project2.Core.pdb
 C:\Users\leewo\source\repos\Project2\Project2.Web\bin\Project2.Core.dll.config
 C:\Users\leewo\source\repos\Project2\Project2.Web\bin\Microsoft.Owin.Security.dll
 C:\Users\leewo\source\repos\Project2\Project2.Web\bin\Microsoft.Owin.Security.xml
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\EPPlus.dll
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\EPPlus.xml

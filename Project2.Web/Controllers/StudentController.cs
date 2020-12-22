@@ -31,7 +31,7 @@ namespace Project2.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult studentPartialView(string search)
+        public PartialViewResult studentPartialView(string search)
         {
             var model = projectService.getListProject(search);
             return PartialView("studentPartialView", model);

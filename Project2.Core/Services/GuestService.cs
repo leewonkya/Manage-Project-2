@@ -54,5 +54,14 @@ namespace Project2.Core.Services
             return context.Guests.Include(x => x.Permission).Where(x => x.Permission.Id == id).ToList();
         }
 
+        public List<Guest> getlistByNameAndId(int id, string name)
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                return context.Guests.Where(x => x.Permission.Id == id && x.Full_name.Contains(name)).ToList();
+            }
+            return context.Guests.Where(x => x.Permission.Id == id).ToList();
+        }
+
     }
 }

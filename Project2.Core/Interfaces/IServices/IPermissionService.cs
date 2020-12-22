@@ -9,5 +9,6 @@ namespace Project2.Core.Interfaces.IServices
     public interface IPermissionService
     {
         string getPermissionNameById(int id);
+        Permission getPerById(int id);
     }
 }

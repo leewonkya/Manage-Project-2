@@ -15,5 +15,11 @@ namespace Project2.Core.Interfaces.IServices
         Project getProjectByStudentId(int id);
 
         List<Project> getListProject(string name);
+
+        List<Project> getListProjectById(int id, string name);
+
+        int getCountProjectByIdTeach(int id);
+
+        bool getNameProject(string name);
     }
 }

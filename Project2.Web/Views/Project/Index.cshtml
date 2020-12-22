@@ -89,7 +89,7 @@
     <div class="modal fade" id="createTag" tabindex="-1" role="dialog"
          aria-labelledby="createTag" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
-            @using (Html.BeginForm("addTag", "Tag", FormMethod.Post, new { @id = "formTag"}))
+            @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formTag", onsubmit = "return addTag(this)"}))
             {
                 <div class="modal-content">
 
@@ -117,8 +117,10 @@
                                 data-dismiss="modal">
                             Close
                         </button>
-                        <input type="submit" class="btn btn-primary" data-toggle="modal" onclick="addTag()"
-                               data-target="#Table" value="Xác nhận" />
+                        <button type="submit" class="btn btn-primary" data-toggle="modal"
+                                data-target="#Table">
+                            Xác nhận
+                        </button>
                     </div>
                 </div>
             }
@@ -128,6 +130,7 @@
 
 </div>
 @section scripts{
+    @*<script src="~/Scripts/tinyMCE/tinymce.min.js"></script>*@
     <script src="~/Scripts/tinyMCE/tinymce.min.js"></script>
     <script>
         $("#select-tag").select2({
@@ -181,6 +184,8 @@
         }
 
         function addProject(form) {
+            
+            
             var url = "@Url.Action("addProject", "Project")";
             var name = $("#name").val();
             var require = tinymce.get("require").getContent();
@@ -198,26 +203,26 @@
                     require: require,
                     Tags: arr
                 },
-                success: function () {
+                success: function (response) {
                     $("#modifyProject").modal("hide");
-                    swal("success!", "Your imaginary file has been deleted!", "success");
+                    swal("success!", "Thêm đồ án thành công", "success");
+                    $("#tableProject").html(response);
                 },
                 error: function (xhr, status, error) {
-                    alert(xhr);
-                    alert(status);
-                    alert(error);
+                    swal("Lỗi!", "Thêm thất bại", "Error");
                 }
             })
             
         }
 
-        function addTag() {            
+        function addTag(form) {            
+            
             var url = "@Url.Action("addTag", "Tag")";
             $.ajax({
                 url: url,
                 type: "POST",
                 success: function () {
-                    swal("success!", "Your imaginary file has been deleted!", "success");
+                    swal("success!", "Thêm Tag thành công", "success");
                 }
             })
         }
@@ -231,7 +236,7 @@
                 contentType: "html",
                 
                 success: function (response) {
-                    swal("success!", "Your imaginary file has been deleted!", "success");
+                    swal("success!", "Xóa đồ án thành công", "success");
                     $("#tableProject").html(response);
                 }
             })
