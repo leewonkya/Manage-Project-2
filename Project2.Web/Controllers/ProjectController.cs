@@ -32,8 +32,11 @@ namespace Project2.Web.Controllers
 
         public ActionResult Index()
         {
+           
             var listTag = tagService.GetTags().ToList();
+            
             ViewBag.listTag = new SelectList(listTag, "id", "name");
+            
             return View();
         }
 
@@ -42,6 +45,14 @@ namespace Project2.Web.Controllers
             var userLogin = (UserLogin)Session["userId"];
             var model = projectService.getListProjectById(userLogin.id, key);
             return PartialView("projectPartialView", model);
+        }
+
+        public ActionResult sidebarPartialView()
+        {
+            var userLogin = (UserLogin)Session["userId"];
+            var guest = guestService.GetGuestById(userLogin.id);
+            ViewBag.guest = guest;
+            return View();
         }
 
         [HttpPost]

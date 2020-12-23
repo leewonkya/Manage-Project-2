@@ -1,0 +1,55 @@
+﻿@{ 
+    Layout = null;
+}
+
+<div class="sidebar shadow-right">
+    <div class="p-3">
+        <div class="logo d-flex justify-content-center align-items-center">
+            <a href="#">Quản Lý Đồ Án</a>
+        </div>
+        <div class="profile-box d-flex justify-content-start align-items-center pl-3">
+            <img src="~/Content/asset/public/Image/@ViewBag.guest.Path" alt="User profile" width="50" class="mr-3" style="border-radius:50%">
+            <div class="profile-box__content d-flex flex-column">
+                <div class="wc">Hello, <span>@ViewBag.guest.Full_name</span></div>
+                <div class="type">Online <span><i class="fas fa-check text-success"></i></span></div>
+            </div>
+        </div>
+        <hr>
+        <div class="list-box">
+            <div class="list-title px-2 mb-2">dashboard</div>
+            <ul class="d-flex flex-column justify-content-center align-items-center">
+                <li class="d-flex flex-row list-item mb-2 active">
+                    <a class="list-link px-2" href="@Url.Action("Index", "Project")">
+                        <span class="icon mr-2">
+                            <i class="fas fa-rainbow"></i>
+                        </span>
+                        <span class="list-link-content">Trang chủ</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="list-box">
+            <div class="list-title px-2 mb-2">Chức năng</div>
+            <ul class="d-flex flex-column justify-content-center align-items-center">
+                <li class="d-flex flex-row list-item mb-2">
+                <li class="d-flex flex-row list-item mb-2">
+                    <a class="list-link px-2">
+                        <span class="icon mr-2">
+                            <i class="fas fa-rainbow"></i>
+                        </span>
+                        <span class="list-link-content">Xem báo cáo tiến độ</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="footer">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    Copyright &copy; By <a href="#" class="footer-text">Dev99</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

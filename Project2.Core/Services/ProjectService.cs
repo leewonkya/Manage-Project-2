@@ -47,6 +47,15 @@ namespace Project2.Core.Services
                 .Where(x => x.GuestStudent.Id == id).SingleOrDefault();
         }
 
+        public List<Project> getListProjectByStudentId(int id)
+        {
+            return context.Projects
+                .Include(x => x.Tags)
+                .Include(x => x.GuestTeacher)
+                .Include(x => x.GuestStudent)
+                .Where(x => x.GuestStudent.Id == id).ToList();
+        }
+
         public List<Project> getListProjectById(int id, string name)
         {
             if (!string.IsNullOrEmpty(name))
@@ -81,6 +90,17 @@ namespace Project2.Core.Services
                 check = false;
             }
             return check;
+        }
+
+        public List<Project> getProjectByIdTime(int id)
+        {
+            return context.Projects
+                .Include(x => x.Reports)
+                .Include(x => x.GuestStudent)
+                .Include(x => x.GuestTeacher)
+                .Include(x => x.Tags)
+                .Where(x => x.time_Start.id == id)
+                .ToList();
         }
     }
 }

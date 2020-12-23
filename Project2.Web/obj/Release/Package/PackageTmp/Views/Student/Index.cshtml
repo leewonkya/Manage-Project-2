@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="student-heading-box d-flex mb-2 align-items-center justify-content-between">
+            <div class="text-2">Đăng ký đồ án môn học</div>
+            <form class="form-inline my-2 my-lg-0">
+                <div class="search-box">
+                    <input class="form-control search" type="text" placeholder="Nhập tên giảng viên" id="searchProject">
+                    <a class="btn btn-hover" href="#">
+                        <i class="fas fa-search fa-sm"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-bordered" id="tableStudent">
+            @Html.Action("studentPartialView", "Student")
+        </table>
+
+        <div class="my-project">
+            <a href="#">Đồ án của tôi</a>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $("#searchProject").keypress(function () {
+            var name = $(this).val();
+            $.ajax({
+                url: "/Student/studentPartialView/?search=" + name,
+                type: "GET",
+                contentType: "html",
+                success: function (response) {
+                    $("#tableStudent").html(response);
+                }
+            });
+        })
+    });
+
+    function addStudent(id) {        
+        var url = "@Url.Action("addOrSwap", "Student")/" + id;
+        $.ajax({
+            url: url,
+            type: "POST",
+            contentType: "html",
+            success: function (response) {
+               $("#tableStudent").html(response);
+               swal("success!", "Thêm đồ án thành công", "success");                
+            },
+            error: function () {
+                swal("Lỗi!", "Thêm đồ án thất bại", "error");
+            }
+        })
+    }
+</script>
+}

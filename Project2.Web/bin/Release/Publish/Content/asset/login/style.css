@@ -1,0 +1,198 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body{
+    height: 100vh;
+}
+
+section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: linear-gradient(to right, #dd4472, #1a73e8); */
+    background-image: #ccc;
+}
+
+section .form-input{
+    width: 600px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column; 
+    padding: 20px 30px;    
+}
+
+section .form-input .title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+section .form-input .sub-title{
+    font-size: 1rem;
+    opacity: .7;
+    margin-bottom: 20px;
+}
+
+section .form-input .title,
+section .form-input .sub-title{
+    width: 100%;
+    color: rgb(0, 0, 0);
+    
+}
+
+section .form-input .social-box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+section .form-input .social-box .btn{
+    cursor: pointer;
+    padding: 8px 20px;
+    border: solid 1px transparent;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section .form-input .social-box .btn-fb{
+    background-color: #1a73e8;
+    color: #fff;    
+}
+
+section .form-input .social-box .btn-fb:hover{
+    background-color: #004bae;
+    transition: background-color .3s;
+}
+
+section .form-input .social-box .btn-google{
+    background-color: #ddd;    
+    
+}
+
+section .form-input .social-box .btn-google:hover{
+    background-color: #eee;
+    box-shadow: 0px 1px 3px 2px #ccc;
+    transition: all .3s;
+}
+
+section .form-input .social-box .btn .btn-fb span:first-child{
+    margin-right: 15px;
+}
+
+section .form-input .social-content{
+    text-align: left;
+    color: #000;
+    opacity: .7;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+section .form-input form .email-box,
+section .form-input form .password-box,
+section .form-input form .form-box{
+    font-size: 16px;
+    width: 100%;
+    padding: 15px;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+}
+
+section .form-input form .form-control{
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    outline: none;
+    border: solid .5px #ccc;
+    overflow: hidden;
+}
+
+section .form-input form .form-control:focus,
+section .form-input form .form-control:valid{
+    border: solid 2px #1a73e8;
+}
+
+section .form-input form .email-box span,
+section .form-input form .form-box span,
+section .form-input form .password-box span{
+    position: absolute;
+    left: 10px;
+    top: 25px;
+    background-color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+section .form-input form .py{
+    
+
+    margin-bottom: 15px;
+}
+
+section .form-input form .py .form-checkbox{
+    padding: 9px;
+    padding-left: 12px;
+    border-radius: 50%;
+    background-color:transparent;
+    margin-right: 5px;
+}
+
+section .form-input form .py .form-checkbox:hover{
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+section .form-input form .form-control:focus ~ span,
+section .form-input form .form-control:valid ~span{
+    transform: translate(0, -20px);
+    font-size: 13px;
+    transition: all .3s;
+    color: #1a73e8;
+}
+
+section .form-input form .submit-box{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+section .form-input form .submit-box input[type="submit"]{
+    background-color: #1a73e8;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 15px;
+    outline: none;
+    border: solid 1px transparent;
+    border-radius: 3px;    
+    cursor: pointer;
+}
+
+section .form-input form .submit-box input[type="submit"]:hover{
+    background-color: #004bae;
+    transition: background-color .3s;
+}
+
+section .form-input .m-password{
+    font-size: 15px;
+}
+
+section .form-input .m-password a{
+    text-decoration: none;
+    color: #1a73e8;
+    font-weight: 500;
+}

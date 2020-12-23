@@ -1,0 +1,60 @@
+﻿@model List<Project2.Core.Models.Entities.Project>
+@{
+    Layout = null;
+}
+
+<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    @if (Model.Count == 0)
+    {
+        <div style="color: red">Dữ liệu trống</div>
+    }
+    <div class="project-box m-4">
+        <div class="title">Quản lý sinh viên</div>
+        <div class="time">Ngày bắt đầu 10/20/2020</div>
+        <div class="time">Ngày kết thúc 10/10/2020</div>
+        <div class="require mb-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi doloremque autem non fugiat,
+        </div>
+        <button type="button" class="btn btn-custom" data-toggle="modal" data-target="#modifyReport">Tạo báo cáo</button>
+    </div>
+</div>
+
+<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+    <div class="report-box m-4">
+        <div class="title">Danh mục báo cáo tiến độ</div>
+        <table class="table table-hover mt-3">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tiêu đề</th>
+                    <th style="text-align: right">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count == 0)
+                {
+                    <tr>
+                        <td colspan="3" style="color: red">Dữ liệu trống</td>
+                    </tr>
+                }
+                @{
+                    int index = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    index++;
+                    <tr>
+                        <td>@index</td>
+                        <td>reports</td>
+                        <td align="right">
+                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modifyReport"><i class="fas fa-pen"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm" onclick="removeReport()"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

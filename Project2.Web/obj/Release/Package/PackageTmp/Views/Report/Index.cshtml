@@ -1,0 +1,115 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<div class="row align-items-top">
+
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="list-box m-4">
+            <div class="title">Đồ án của tôi</div>
+            <div class="list-group">
+                <a href="#" class="list-group-item Isactive">Đồ án môn học 1</a>
+                <a href="#" class="list-group-item">Đồ án môn học 2</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="project-box m-4">
+            <div class="title">Quản lý sinh viên</div>
+            <div class="time">Ngày bắt đầu 10/20/2020</div>
+            <div class="time">Ngày kết thúc 10/10/2020</div>
+            <div class="require mb-4">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi doloremque autem non fugiat,
+            </div>
+            <button type="button" class="btn btn-custom" data-toggle="modal" data-target="#modifyReport">Tạo báo cáo</button>
+        </div>
+    </div>
+
+    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div class="report-box m-4">
+            <div class="title">Danh mục báo cáo tiến độ</div>
+            <table class="table table-hover mt-3">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tiêu đề</th>
+                        <th style="text-align: right">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Báo cáo tiến độ đợt 1</td>
+                        <td align="right">
+                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modifyReport"><i class="fas fa-pen"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm" onclick="removeReport()"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Báo cáo tiến độ đợt 2</td>
+                        <td align="right">
+                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modifyReport"><i class="fas fa-pen"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm" onclick="removeReport()"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="my-project">
+        <a href="#">Đồ án của tôi</a>
+    </div>
+
+    <div class="modal fade" id="modifyReport" tabindex="-1" role="dialog"
+         aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form>
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tạo báo cáo tiến độ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                <div class="form-group">
+                                    <label>Tiêu đề</label>
+                                    <input type="text" name="" id="" class="form-control"
+                                           placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Tiêu đề báo cáo tiến độ</small>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Nội dung</label>
+                                <textarea></textarea>
+                                <small id="helpId" class="text-muted">Nội dung của báo cáo tiến độ</small>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                        <input type="submit" class="btn btn-primary" data-toggle="modal"
+                               data-target="#Table" value="Xác nhận" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,247 @@
+﻿@model Project2.Web.Models.ProjectViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+
+<div class="row">
+    <!-- Danh mục đồ án  -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="content-box__name mb-3 pb-2">Danh Mục Đồ Án</div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="index-box py-3 pb-3 ml-3 d-flex justify-content-start align-items-center">
+            <button class="btn btn-custom btn-create" data-toggle="modal" data-target="#modifyProject">Tạo ngay</button>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-bordered table-hover" id="tableProject">
+            @Html.Action("projectPartialView", "Project")
+        </table>
+    </div>
+
+
+    <div class="modal fade" id="modifyProject" tabindex="-1" role="dialog"
+         aria-labelledby="modifyProject" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            @using (Html.BeginForm("AddProject", "Project", FormMethod.Post, new { onsubmit = "return addProject(this)" }))
+            {
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tạo đồ án môn học</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label>Tên đồ án</label>
+                                    @Html.EditorFor(x => x.name, new { htmlAttributes = new { @class = "form-control", type = "text", required = "required" } })
+                                    @Html.ValidationMessageFor(x => x.name, "", new { @class = "text-danger" })
+                                    <small id="helpId" class="text-muted">Tên đồ án cho sinh viên</small>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                                        <div class="form-group">
+                                            <label>Sử dụng ngôn ngữ</label>
+                                            @Html.DropDownListFor(x => x.Tags, (IEnumerable<SelectListItem>)ViewBag.listTag, new { @class = "form-control", @id = "select-tag", @multiple = "true" })
+                                            <small id="helpId" class="text-muted">Ngôn ngữ được sử dụng cho đồ án</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                        <div class="form-group">
+                                            <label>Thêm Ngôn ngữ</label><br>
+                                            <button type="button" class="btn btn-secondary btn-addTag form-control" data-toggle="modal" data-target="#createTag">Thêm</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Các yêu cầu</label>
+                                @Html.TextAreaFor(x => x.require, new { @class = "projectContent" })
+                                @Html.ValidationMessageFor(x => x.require, "", new { @class = "text-danger" })
+                                <small id="helpId" class="text-muted">Các yêu cầu được sử dụng cho đồ án</small>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                        <input type="submit" class="btn btn-primary" data-toggle="modal"
+                               data-target="#Table" value="Xác nhận" />
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="createTag" tabindex="-1" role="dialog"
+         aria-labelledby="createTag" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formTag", onsubmit = "return addTag(this)" }))
+            {
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tạo Tag</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label>Tên Ngôn ngữ</label>
+                                    @Html.EditorFor(x => x.tagName, new { @class = "form-control", @require = "require", @type = "text" })
+                                    @Html.ValidationMessageFor(x => x.Tags, "", new { @class = "text-danger" })
+                                    <small id="helpId" class="text-muted">Tên ngôn ngữ được sử dụng cho đồ án</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal"
+                                data-target="#Table">
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    @*<script src="~/Scripts/tinyMCE/tinymce.min.js"></script>*@
+    <script src="~/Scripts/tinyMCE/tinymce.min.js"></script>
+    <script>
+        $("#select-tag").select2({
+            placeholder: "Chọn ngôn ngữ",
+            tags: true,
+            tokenSeparators: ['/', ',', ',', " "]
+        });
+        tinymce.init({
+            selector: 'textarea',
+            width: "100%",
+            height: "300px",
+
+            entity_encoding: "raw",
+            menubar: false,
+
+            relative_urls: false,
+            inline_styles: true,
+            image_advtab: true,
+            branding: false,
+
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code colorpicker textcolor ', 'wordcount'
+            ],
+            toolbar: 'link  image| alignleft aligncenter alignright alignjustify | styleselect | bold italic | forecolor | backcolor  | bullist numlist outdent indent  ',
+            toolbar_location: 'bottom'
+
+        });
+
+        function removeProject() {
+            swal({
+                title: "Bạn có chắc muốn xóa!",
+                text: "Dữ liệu sẽ không được khôi phục!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: 'red',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: "No, cancel plx!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal("Deleted!", "Your imaginary file has been deleted!", "success");
+                    } else {
+                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                    }
+                }
+            )
+        }
+
+        function addProject(form) {
+
+
+            var url = "@Url.Action("addProject", "Project")";
+            var name = $("#name").val();
+            var require = tinymce.get("require").getContent();
+            var arr = [];
+
+            $.each($("#select-tag option:selected"), function () {
+                arr.push($(this).val());
+            });
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    name: name,
+                    require: require,
+                    Tags: arr
+                },
+                success: function (response) {
+                    $("#modifyProject").modal("hide");
+                    swal("success!", "Thêm đồ án thành công", "success");
+                    $("#tableProject").html(response);
+                },
+                error: function (xhr, status, error) {
+                    swal("Lỗi!", "Thêm thất bại", "Error");
+                }
+            })
+
+        }
+
+        function addTag(form) {
+
+            var url = "@Url.Action("addTag", "Tag")";
+            $.ajax({
+                url: url,
+                type: "POST",
+                success: function () {
+                    swal("success!", "Thêm Tag thành công", "success");
+                }
+            })
+        }
+
+        function removeProject(id) {
+
+            var url = "@Url.Action("removeProject", "Project")/"+id;
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: "html",
+
+                success: function (response) {
+                    swal("success!", "Xóa đồ án thành công", "success");
+                    $("#tableProject").html(response);
+                }
+            })
+        }
+    </script>
+}

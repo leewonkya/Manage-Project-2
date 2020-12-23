@@ -230,6 +230,7 @@
     </Content>
     <Content Include="Content\asset\vendors\bootstrap-4.5.2-dist\bootstrap.min.css.map" />
     <Content Include="Content\asset\vendors\bootstrap-4.5.2-dist\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\all.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -344,11 +345,13 @@
     <Content Include="Views\Student\studentPartialView.cshtml" />
     <Content Include="Views\Guest\Add.cshtml" />
     <Content Include="Views\Guest\guestPartialView.cshtml" />
+    <Content Include="Views\Project\sidebarPartialView.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\reportPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\asset\css\" />
     <Folder Include="Content\asset\public\Uploads\" />
-    <Folder Include="Views\Report\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>

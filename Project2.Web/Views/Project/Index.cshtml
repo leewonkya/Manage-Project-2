@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 
+
 <div class="row">
     <!-- Danh mục đồ án  -->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -47,7 +48,7 @@
                                 <div class="row">
                                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
                                         <div class="form-group">
-                                            <label>Sử dụng ngôn ngữ</label>                                            
+                                            <label>Sử dụng ngôn ngữ</label>
                                             @Html.DropDownListFor(x => x.Tags, (IEnumerable<SelectListItem>)ViewBag.listTag, new { @class = "form-control", @id = "select-tag", @multiple = "true" })
                                             <small id="helpId" class="text-muted">Ngôn ngữ được sử dụng cho đồ án</small>
                                         </div>
@@ -89,7 +90,7 @@
     <div class="modal fade" id="createTag" tabindex="-1" role="dialog"
          aria-labelledby="createTag" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
-            @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formTag", onsubmit = "return addTag(this)"}))
+            @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formTag", onsubmit = "return addTag(this)" }))
             {
                 <div class="modal-content">
 
@@ -129,6 +130,7 @@
     </div>
 
 </div>
+
 @section scripts{
     @*<script src="~/Scripts/tinyMCE/tinymce.min.js"></script>*@
     <script src="~/Scripts/tinyMCE/tinymce.min.js"></script>
@@ -160,7 +162,7 @@
             toolbar_location: 'bottom'
 
         });
-       
+
         function removeProject() {
             swal({
                 title: "Bạn có chắc muốn xóa!",
@@ -184,8 +186,8 @@
         }
 
         function addProject(form) {
-            
-            
+
+
             var url = "@Url.Action("addProject", "Project")";
             var name = $("#name").val();
             var require = tinymce.get("require").getContent();
@@ -205,18 +207,18 @@
                 },
                 success: function (response) {
                     $("#modifyProject").modal("hide");
+                    $("#tableProject").html(response);  
                     swal("success!", "Thêm đồ án thành công", "success");
-                    $("#tableProject").html(response);
                 },
                 error: function (xhr, status, error) {
                     swal("Lỗi!", "Thêm thất bại", "Error");
                 }
             })
-            
+
         }
 
-        function addTag(form) {            
-            
+        function addTag(form) {
+
             var url = "@Url.Action("addTag", "Tag")";
             $.ajax({
                 url: url,
@@ -228,13 +230,13 @@
         }
 
         function removeProject(id) {
-            
+
             var url = "@Url.Action("removeProject", "Project")/"+id;
             $.ajax({
                 url: url,
                 type: "POST",
                 contentType: "html",
-                
+
                 success: function (response) {
                     swal("success!", "Xóa đồ án thành công", "success");
                     $("#tableProject").html(response);
