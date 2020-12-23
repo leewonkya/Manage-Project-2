@@ -9,6 +9,8 @@ namespace Project2.Core.Interfaces.IServices
 {
     public interface IReportService
     {
-        //List<Report> GetReports(int projectId)
+        List<Report> GetReports(int projectId);
+
+        Report getReportById(int id);
     }
 }

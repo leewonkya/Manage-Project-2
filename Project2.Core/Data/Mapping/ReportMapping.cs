@@ -14,10 +14,10 @@ namespace Project2.Core.Data.Mapping
         {
             HasKey(x => x.id);
             Property(x => x.id).IsRequired();
-            Property(x => x.title).IsRequired();
-            Property(x => x.content).IsRequired();
-            Property(x => x.files).IsOptional();
-            Property(x => x.create_at).IsRequired();
+            Property(x => x.title).IsOptional();
+            Property(x => x.content).IsOptional();
+            Property(x => x.isSeen).IsOptional();
+            Property(x => x.create_at).IsOptional();
         }
     }
 }

@@ -112,3 +112,12 @@ C:\Users\leewo\source\repos\Project2\Project2.Web\bin\Microsoft.Owin.Security.dl
 C:\Users\leewo\source\repos\Project2\Project2.Web\bin\Microsoft.Owin.Security.xml
 C:\Users\leewo\source\repos\Project2\Project2.Web\bin\EPPlus.dll
 C:\Users\leewo\source\repos\Project2\Project2.Web\bin\EPPlus.xml
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\PhpNetClassLibrary.dll
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\PhpNetCore.CodeDom.dll
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\PhpNetCore.dll
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\PhpNetCore.DuckTyping.dll
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\PhpNetCore.Parsers.dll
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\PhpNetCurl.dll
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\PhpNetGd2.dll
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\PhpNetIconv.dll
+C:\Users\leewo\source\repos\Project2\Project2.Web\bin\PhpNetMbstring.dll

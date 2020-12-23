@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using Project2.Web.Common;
 using System.Web.Mvc;
+using Project2.Core.Models.Entities;
 
 namespace Project2.Web.Controllers
 {
@@ -33,10 +34,17 @@ namespace Project2.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult reportPartialView(int id)
-        {        
-            var model = projectService.getProjectByIdTime(id);
-            return PartialView("reportPartialView", model);
+        public PartialViewResult reportPartialView(int id)
+        {
+            Project model = null;
+            if(id != 0)
+            {
+                model = projectService.getProjectById(id);
+                return PartialView("reportPartialView", model);
+            }
+            return PartialView("reportPartialView", model);            
         }
+        
+
     }
 }

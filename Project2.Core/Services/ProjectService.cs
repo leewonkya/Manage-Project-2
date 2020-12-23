@@ -26,7 +26,7 @@ namespace Project2.Core.Services
 
         public Project getProjectById(int id)
         {
-            return context.Projects.Find(id);
+            return context.Projects.Include(x => x.time_Start).Include(x => x.Reports).Include(x => x.GuestTeacher).Include(x => x.GuestStudent).Where(x => x.id == id).SingleOrDefault();
         }
 
         public List<Project> getListProject(string name)

@@ -1,0 +1,43 @@
+﻿@model Project2.Core.Models.Entities.Report
+@{
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+<div class="row">
+    <div class="w-100">
+        <ul class="breadcrumb breadcrumb-custom">
+            <li class="breadcrumb-item"><a href="#">Danh Sách Đồ Án</a></li>
+            <li class="breadcrumb-item active"><a href="#">@ViewBag.name</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="heading d-flex flex-row justify-content-between p-2 mb-2 align-content-around">
+            <div class="heading-title h4">Danh Sách báo cáo</div>
+            <div class="heading-services d-flex">
+                <input type="text" class="form-control mr-2" placeholder="search">
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-hover" id="tableReport">
+            @Html.Action("reportPartialViewInTeacher", "Project", new { id = ViewBag.id })
+        </table>
+    </div>
+
+</div>
+
+@section scripts{
+<script>
+    function changeStatus(id) {
+        $.ajax({
+            url: "/Project/changeStatus/" + id,
+            contentType: "html",
+            type: "GET",
+            success: function (response) {
+                console.log(response);  
+                $("#tableReport").html(response);
+            }
+        });
+    }
+    </script>
+    }

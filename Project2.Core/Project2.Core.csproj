@@ -160,6 +160,18 @@
     <Compile Include="Migrations\202012200955489_initialize4.designer.cs">
       <DependentUpon>202012200955489_initialize4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012230526423_initialize5.cs" />
+    <Compile Include="Migrations\202012230526423_initialize5.designer.cs">
+      <DependentUpon>202012230526423_initialize5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012230652256_initialize6.cs" />
+    <Compile Include="Migrations\202012230652256_initialize6.designer.cs">
+      <DependentUpon>202012230652256_initialize6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012231456035_initialize7.cs" />
+    <Compile Include="Migrations\202012231456035_initialize7.designer.cs">
+      <DependentUpon>202012231456035_initialize7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Project2Configuration.cs" />
     <Compile Include="Data\Context\DataContext.cs" />
@@ -216,6 +228,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012200955489_initialize4.resx">
       <DependentUpon>202012200955489_initialize4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012230526423_initialize5.resx">
+      <DependentUpon>202012230526423_initialize5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012230652256_initialize6.resx">
+      <DependentUpon>202012230652256_initialize6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012231456035_initialize7.resx">
+      <DependentUpon>202012231456035_initialize7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,7 +11,7 @@ namespace Project2.Core.Models.Entities
         public int id { get; set; }
         public string title { get; set; }
         public string content { get; set; }
-        public string files { get; set; }
+        public bool isSeen { get; set; }
         public DateTime create_at { get; set; }
 
         public Project Project { get; set; }

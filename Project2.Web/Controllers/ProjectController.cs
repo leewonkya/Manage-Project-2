@@ -19,15 +19,17 @@ namespace Project2.Web.Controllers
         private readonly ITagService tagService;
         private readonly ITimeStartService timeStartService;
         private readonly IGuestService guestService;
+        private readonly IReportService reportService;
         private IDataContext dataContext;
 
-        public ProjectController(IProjectService projectService, IDataContext dataContext, ITagService tagService, ITimeStartService timeStartService, IGuestService guestService)
+        public ProjectController(IProjectService projectService, IDataContext dataContext, ITagService tagService, ITimeStartService timeStartService, IGuestService guestService, IReportService reportService)
         {
             this.projectService = projectService;
             this.dataContext = dataContext;
             this.tagService = tagService;
             this.timeStartService = timeStartService;
             this.guestService = guestService;
+            this.reportService = reportService;
         }
 
         public ActionResult Index()
@@ -121,6 +123,35 @@ namespace Project2.Web.Controllers
             dataContext.Projects.Remove(data);
             dataContext.SaveChanges();
             return RedirectToAction("projectPartialView", "Project");
+        }
+
+        public ActionResult loadReport(int id)
+        {
+            var project = projectService.getProjectById(id);
+            ViewBag.name = project.name;
+
+            ViewBag.id = project.id;
+            return View();
+        }
+
+        [HttpGet]
+        public PartialViewResult reportPartialViewInTeacher(int id)
+        {
+            var model = reportService.GetReports(id);
+            return PartialView("reportPartialViewInTeacher", model);
+        }
+
+        [HttpGet]
+        public ActionResult changeStatus(int id)
+        {
+            if(id > 0)
+            {
+                var model = reportService.getReportById(id);
+                model.isSeen = true;
+                dataContext.SaveChanges();
+                return PartialView("reportPartialViewInTeacher", model);
+            }
+            return View("loadReport", "Project");
         }
     }
 }

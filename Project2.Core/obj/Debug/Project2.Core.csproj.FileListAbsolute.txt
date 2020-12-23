@@ -59,3 +59,6 @@ C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migra
 C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize2.resources
 C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize3.resources
 C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize4.resources
+C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize5.resources
+C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize6.resources
+C:\Users\leewo\source\repos\Project2\Project2.Core\obj\Debug\Project2.Core.Migrations.initialize7.resources

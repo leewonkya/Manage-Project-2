@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     @Styles.Render("~/css/All")
-    <script src="~/Scripts/tinymce.min.js"></script>
     <title>Manane Project | Dev99</title>
+
 </head>
 
 <body>
@@ -20,7 +20,7 @@
                     <a class="navbar-brand" href="#">Quản lí đồ án</a>
                 </div>
                 <div class="collapse navbar-collapse flex-grow-1 flex-lg-grow-0">
-
+                        
                     <ul class="navbar-nav mt-2 mt-lg-0 align-items-center">
 
                         <li class="nav-item dropdown" id="user">
@@ -71,6 +71,7 @@
         </div>
     </div>
     @Scripts.Render("~/js/All")
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {

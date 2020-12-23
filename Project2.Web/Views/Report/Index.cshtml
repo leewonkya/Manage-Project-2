@@ -11,59 +11,111 @@
             <div class="list-group">
                 @foreach (var item in Model)
                 {
-                    <a href="@Url.Action("reportPartialView", "Report", new { id = item.id })" class="list-group-item">@item.name</a>
+                    <a onclick="loadReport(@item.id)" class="list-group-item" style="cursor: pointer">@item.name</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+        <div id="reportData">
+
+            @Html.Action("reportPartialView", "Report", new { id = 0 })
+
+        </div>
+        <div class="my-project">
+            <a href="/Report/">Đồ án của tôi</a>
+        </div>
+        <div class="modal fade" id="modifyReport" tabindex="-1" role="dialog"
+             aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                @using (Html.BeginForm("addReport", "Report", FormMethod.Post))
+                {
+
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Tạo báo cáo tiến độ</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label>Tiêu đề</label>
+                                        <input type="text" name="name" id="" class="form-control"
+                                               placeholder="" aria-describedby="helpId">
+                                        <small id="helpId" class="text-muted">Tiêu đề báo cáo tiến độ</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <label>Nội dung</label>
+                                    <textarea id="content" name="content"></textarea>
+                                    <small id="helpId" class="text-muted">Nội dung của báo cáo tiến độ</small>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">
+                                Close
+                            </button>
+                            <input type="submit" class="btn btn-primary" data-toggle="modal"
+                                   data-target="#Table" value="Xác nhận" />
+                        </div>
+                    </div>
                 }
             </div>
         </div>
     </div>
 
-    @Html.Action("reportPartialView", "Report");
+    <div class="modal fade" id="myModal1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Quản lý tệp tin</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-    <div class="my-project">
-        <a href="/Report/">Đồ án của tôi</a>
-    </div>
-    <div class="modal fade" id="modifyReport" tabindex="-1" role="dialog"
-         aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <form>
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title">Tạo báo cáo tiến độ</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-                                <div class="form-group">
-                                    <label>Tiêu đề</label>
-                                    <input type="text" name="" id="" class="form-control"
-                                           placeholder="" aria-describedby="helpId">
-                                    <small id="helpId" class="text-muted">Tiêu đề báo cáo tiến độ</small>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <label>Nội dung</label>
-                                <textarea></textarea>
-                                <small id="helpId" class="text-muted">Nội dung của báo cáo tiến độ</small>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                                data-dismiss="modal">
-                            Close
-                        </button>
-                        <input type="submit" class="btn btn-primary" data-toggle="modal"
-                               data-target="#Table" value="Xác nhận" />
-                    </div>
                 </div>
-            </form>
+                <div class="modal-body">
+                    <iframe src="/filemanager/dialog.php?type=1&fldr=&field_id=fieldID" frameborder="0" style="overflow:hidden; min-height:600px; height:100%;width:100%" height="100%" width="100%"></iframe>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    @section scripts{
+        <script>
+        function loadReport(id) {
+            var url = "@Url.Action("reportPartialView", "Report")/" + id;
+            $.ajax({
+                url: url,
+                contentType: "html",
+                type: "GET",
+                success: function (response) {
+                    $("#reportData").html(response);
+                }
+            });
+        }
+        tinyMCE.init({
+            selector: '#content',
+            height: 500,
+            entity_encoding: "raw",
+            relative_urls: false,
+
+            inline_styles: true, image_advtab: true,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code colorpicker textcolor responsivefilemanager'
+            ],
+            toolbar: 'insertfile undo redo | styleselect | bold italic | forecolor | backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link  image fullscreen | responsivefilemanager |',
+            external_filemanager_path: "/filemanager/",
+            external_plugins: { "filemanager": "/filemanager/plugin.min.js" },
+            filemanager_title: "Responsive File Manager",
+            filemanager_access_key: 'f970ce5bc016b5c5ca08e2e39c2cc937&foldr=',
+
+        });
+        </script>
+    }
