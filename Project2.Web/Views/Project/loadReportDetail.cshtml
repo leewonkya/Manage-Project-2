@@ -1,0 +1,31 @@
+﻿@model Project2.Core.Models.Entities.Report
+@{
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+    string s = Model.create_at.ToString();
+}
+<div class="row">
+    <div class="w-100">
+        <ul class="breadcrumb breadcrumb-custom">
+            <li class="breadcrumb-item"><a href="#">Danh Sách Đồ Án</a></li>
+            <li class="breadcrumb-item"><a href="#">Quản lý sinh viên</a></li>
+            <li class="breadcrumb-item active"><a href="#">@Model.title</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="heading d-flex flex-column p-2 mb-2 align-content-around">
+            <div class="heading-title h3">@Model.title</div>
+            <div class="heading-by">up load by @Model.Project.GuestStudent.Full_name - @Model.create_at</div>
+        </div>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="content-render">
+            
+            @Html.Raw(Model.content)
+        </div>
+        <div class="back">
+            <a href="@Url.Action("loadReport", "Project", new { id = Model.Project.id })">&prec; Trở về trang thông báo</a>
+        </div>
+    </div>
+</div>

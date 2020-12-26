@@ -30,9 +30,9 @@
             <div class="modal-dialog modal-lg" role="document">
                 @using (Html.BeginForm("addReport", "Report", FormMethod.Post))
                 {
-
+                    
                     <div class="modal-content">
-
+                        <input type="hidden" name="projectId" value="@ViewBag.projectId" />
                         <div class="modal-header">
                             <h5 class="modal-title">Tạo báo cáo tiến độ</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -44,7 +44,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="form-group">
                                         <label>Tiêu đề</label>
-                                        <input type="text" name="name" id="" class="form-control"
+                                        <input type="text" name="title" id="" class="form-control"
                                                placeholder="" aria-describedby="helpId">
                                         <small id="helpId" class="text-muted">Tiêu đề báo cáo tiến độ</small>
                                     </div>
@@ -63,7 +63,7 @@
                                 Close
                             </button>
                             <input type="submit" class="btn btn-primary" data-toggle="modal"
-                                   data-target="#Table" value="Xác nhận" />
+                                   data-target="#Table" value="Xác nhận" onclick="addReport()" />
                         </div>
                     </div>
                 }
@@ -85,7 +85,9 @@
             </div>
         </div>
     </div>
+</div>
     @section scripts{
+        <script src="~/Scripts/tinyMCE/tinymce.min.js"></script>
         <script>
         function loadReport(id) {
             var url = "@Url.Action("reportPartialView", "Report")/" + id;
@@ -97,7 +99,25 @@
                     $("#reportData").html(response);
                 }
             });
-        }
+            }
+            function addReport() {
+                var url = "@Url.Action("addReport", "Report")";;
+                $.ajax({
+                    url: url,
+                    contentType: "html",
+                    type: "POST"
+                })
+            }
+
+            function removeReport(id) {
+                var url = "@Url.Action("removeReport", "Report")/" + id;
+                $.ajax({
+                    url: url,
+                    contentType: "html",
+                    type: "GET"
+                })
+            }
+
         tinyMCE.init({
             selector: '#content',
             height: 500,

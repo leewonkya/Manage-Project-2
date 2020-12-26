@@ -142,16 +142,22 @@ namespace Project2.Web.Controllers
         }
 
         [HttpGet]
+        [ValidateInput(false)]
         public ActionResult changeStatus(int id)
+        {            
+            var model = reportService.getReportById(id);
+            model.isSeen = true;
+            dataContext.SaveChanges();
+            var myModel = reportService.GetReports(model.Project.id);
+            return PartialView("reportPartialViewInTeacher", myModel);
+        }
+
+        public ActionResult loadReportDetail(int id)
         {
-            if(id > 0)
-            {
-                var model = reportService.getReportById(id);
-                model.isSeen = true;
-                dataContext.SaveChanges();
-                return PartialView("reportPartialViewInTeacher", model);
-            }
-            return View("loadReport", "Project");
+            var model = reportService.getReportById(id);
+            model.isSeen = true;
+            dataContext.SaveChanges();
+            return View(model);
         }
     }
 }

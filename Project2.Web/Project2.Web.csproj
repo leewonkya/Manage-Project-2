@@ -728,6 +728,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Views\Project\loadReport.cshtml" />
     <Content Include="Views\Project\reportPartialViewInTeacher.cshtml" />
+    <Content Include="Views\Project\loadReportDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\asset\css\" />

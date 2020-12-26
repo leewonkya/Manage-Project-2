@@ -30,6 +30,8 @@ namespace Project2.Web.Controllers
         {
             var userLogin = (UserLogin)Session["userId"];
             var model = projectService.getListProjectByStudentId(userLogin.id).ToList();
+            var project = projectService.getProjectByStudentId(userLogin.id);
+            ViewBag.projectId = project.id;
             return View(model);
         }
 
@@ -45,6 +47,33 @@ namespace Project2.Web.Controllers
             return PartialView("reportPartialView", model);            
         }
         
-
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult addReport(Report model, int projectId)
+        {
+            var project = projectService.getProjectById(projectId);
+            if(model != null)
+            {
+                var data = new Report();
+                data.title = model.title;
+                data.create_at = DateTime.Now;
+                data.isSeen = false;
+                data.content = model.content;
+                data.Project = project;
+                dataContext.Reports.Add(data);
+                dataContext.SaveChanges();
+                return RedirectToAction("Index", "Report");
+            }
+            return RedirectToAction("Index", "Report");
+        }
+        
+        public ActionResult removeReport(int id)
+        {            
+            var model = reportService.getReportById(id);
+            var project = projectService.getProjectById(model.Project.id);
+            dataContext.Reports.Remove(model);
+            dataContext.SaveChanges();
+            return RedirectToAction("Index", "Report");
+        }
     }
 }

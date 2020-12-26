@@ -29,12 +29,12 @@
 @section scripts{
 <script>
     function changeStatus(id) {
+        var url = "@Url.Action("changeStatus", "Project")/" + id;
         $.ajax({
-            url: "/Project/changeStatus/" + id,
+            url: url,
             contentType: "html",
             type: "GET",
             success: function (response) {
-                console.log(response);  
                 $("#tableReport").html(response);
             }
         });
